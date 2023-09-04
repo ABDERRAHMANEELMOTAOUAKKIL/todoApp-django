@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load crispy_forms_filters %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mt-5">
+            <h1>TODO</h1>
+            <h6>Empower Your Productivity with ToDoApp: Where Tasks Become Triumphs</h6>
+            <a href="{%url 'register'%}">
+                <button class="btn btn-danger mt-3">Get started</button></a>
+            <p class="text-muted mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum totam necessitatibus quaerat sunt hic, ab eos pariatur incidunt tenetur? Commodi?</p>
+        </div>
+        <div class="col-md-6">
+            <img src="https://images.unsplash.com/photo-1611224885990-ab7363d1f2a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1939&q=80" width="700" height="500" alt="" style="border-bottom-left-radius: 50%; border-bottom-right-radius: 50%;">
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+<!-- your_template.html -->
+
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <h2>My Todo List</h2>
+    <!-- Search bar htmx -->
+    <!-- <form method="get" hx-get="{% url 'tasks' %}" hx-trigger="keyup changed delay:300ms" data-hx-target="#task-list-container">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="query" placeholder="Search tasks..." value="{{ request.GET.query }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form> -->
+
+    <!-- search bar unpoly -->
+    <form method="get" up-autosubmit="{form: '#search-form', target: '#task-list-container'}" id="search-form">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="query" placeholder="Search tasks..." value="{{ request.GET.query }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+    <!-- <form method="get" up-submit="#task-list-container" action="{% url 'tasks' %}" id="search-form">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="query" placeholder="Search tasks..." value="{{ request.GET.query }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form> -->
+
+</div>
+
+<div id="task-list-container">
+    {% if tasks %}
+    <ul class="list-group">
+        {% for task in tasks %}
+        <li class="list-group-item d-flex justify-content-between align-items-center {% if task.completed %}completed{% endif %}">
+            <a href="{% url 'task_detail' task.id %}" class="flex-grow-1 text-decoration-none">
+                {{ task.title }}
+            </a>
+            <div class="task-controls">
+                <a class="btn btn-success" href="{%url 'task_update' task.id %}">edit</a>
+                <a class="btn btn-danger" href="{%url 'task_delete' task.id %}">delete</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-center mt-3">You have no tasks! <a class="btn btn-primary" href="{%url 'task_create'%}">Create Task</a> </p>
+    {% endif %}
+</div>
+</div>
+
+{% endblock content %}

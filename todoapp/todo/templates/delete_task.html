@@ -1,0 +1,13 @@
+ {% extends 'base.html' %} {% block content %}
+<div class="center" id="delete-form-container">
+    <form method="post" class="card" data-hx-post="{% url 'task_delete' pk=task.pk %}" data-hx-target="#delete-form-container">
+        {% csrf_token %}
+        <h2>Delete Task</h2>
+        <p>Are you sure that you want to delete "{{ task }}"?</p>
+        <p class="form-buttons">
+            <input type="submit" class="btn btn-primary" value="Delete">
+            <a href="{% url 'tasks' %}" class="btn btn-outline">Cancel</a>
+        </p>
+    </form>
+</div>
+{% endblock content %}
